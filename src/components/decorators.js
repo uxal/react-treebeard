@@ -3,17 +3,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
-import {VelocityComponent} from 'velocity-react';
+import { VelocityComponent } from 'velocity-react';
 
-const Loading = ({style}) => {
+const Loading = ({ style }) => {
     return <div style={style}>loading...</div>;
 };
 Loading.propTypes = {
     style: PropTypes.object
 };
 
-const Toggle = ({style}) => {
-    const {height, width} = style;
+const Toggle = ({ style }) => {
+    const { height, width } = style;
     const midHeight = height * 0.5;
     const points = `0,0 0,${height} ${width},${midHeight}`;
 
@@ -22,7 +22,7 @@ const Toggle = ({style}) => {
             <div style={style.wrapper}>
                 <svg height={height} width={width}>
                     <polygon points={points}
-                             style={style.arrow}/>
+                        style={style.arrow} />
                 </svg>
             </div>
         </div>
@@ -32,7 +32,7 @@ Toggle.propTypes = {
     style: PropTypes.object
 };
 
-const Header = ({node, style}) => {
+const Header = ({ node, style }) => {
     return (
         <div style={style.base}>
             <div style={style.title}>
@@ -49,22 +49,22 @@ Header.propTypes = {
 @Radium
 class Container extends React.Component {
     render() {
-        const {style, decorators, terminal, onClick, node} = this.props;
+        const { style, decorators, terminal, onClick, node } = this.props;
 
         return (
             <div onClick={onClick}
-                 ref={ref => this.clickableRef = ref}
-                 style={style.container}>
+                ref={ref => this.clickableRef = ref}
+                style={style.container}>
                 {!terminal ? this.renderToggle() : null}
 
                 <decorators.Header node={node}
-                                   style={style.header}/>
+                    style={style.header} />
             </div>
         );
     }
 
     renderToggle() {
-        const {animations} = this.props;
+        const { animations } = this.props;
 
         if (!animations) {
             return this.renderToggleDecorator();
@@ -72,17 +72,17 @@ class Container extends React.Component {
 
         return (
             <VelocityComponent animation={animations.toggle.animation}
-                               duration={animations.toggle.duration}
-                               ref={ref => this.velocityRef = ref}>
+                duration={animations.toggle.duration}
+                ref={ref => this.velocityRef = ref}>
                 {this.renderToggleDecorator()}
             </VelocityComponent>
         );
     }
 
     renderToggleDecorator() {
-        const {style, decorators} = this.props;
+        const { style, decorators } = this.props;
 
-        return <decorators.Toggle style={style.toggle}/>;
+        return <decorators.Toggle style={style.toggle} />;
     }
 }
 Container.propTypes = {
@@ -90,6 +90,7 @@ Container.propTypes = {
     decorators: PropTypes.object.isRequired,
     terminal: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
+    onCustomContainerClick: PropTypes.func,
     animations: PropTypes.oneOfType([
         PropTypes.object,
         PropTypes.bool

@@ -1,7 +1,7 @@
 {
-  "name": "react-treebeard",
+  "name": "uxal-react-treebeard",
   "version": "2.1.0",
-  "description": "React Tree View Component",
+  "description": "React Tree View Component - This is a fork of react-treebeard made by Alex Curtis",
   "main": "index.js",
   "scripts": {
     "prepublish": "npm run lib",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexcurtis/react-treebeard.git"
+    "url": "git+https://github.com/uxal/react-treebeard.git"
   },
   "keywords": [
     "react",
@@ -26,7 +26,7 @@
     "customisable",
     "fast"
   ],
-  "author": "Alex Curtis",
+  "author": "Alex Curtis & Dragos Lascu",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/alexcurtis/react-treebeard/issues"

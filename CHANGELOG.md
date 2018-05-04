@@ -2,6 +2,9 @@
 
 ### vNEXT
 
+### v2.1.1
+- Add new click handle function called `onCustomContainerClick` which is used for custom containers
+
 ### v2.1.0
 - Add `React 16.0` to peerDependencies [PR #102](https://github.com/alexcurtis/react-treebeard/pull/102)
 

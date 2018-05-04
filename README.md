@@ -1,4 +1,4 @@
-# react-treebeard
+# uxal-react-treebeard
 
 [![Build Status](https://travis-ci.org/alexcurtis/react-treebeard.svg?branch=master)](https://travis-ci.org/alexcurtis/react-treebeard) [![Coverage Status](https://coveralls.io/repos/alexcurtis/react-treebeard/badge.svg?branch=master&service=github)](https://coveralls.io/github/alexcurtis/react-treebeard?branch=master)
 
@@ -7,7 +7,56 @@ React Tree View Component. Data-Driven, Fast, Efficient and Customisable.
 ### Install
 
 ```
-npm install react-treebeard --save
+npm install uxal-react-treebeard --save
+```
+
+### UXAL description (after initial fork)
+
+This is a fork of the [react-treebeard](https://github.com/alexcurtis/react-treebeard) project. I've forked it in order to add a new click event handler which I needed for a custom container decorator. In my scenario I wanted to be able to click on the arrows to expand/collapse the tree and do something else when clicking on the node's text.
+
+The new click handler is called `onCustomContainerClick`
+
+See the example below of the custom conatiner decorator
+```javascript
+
+decorators.Container = (props) => {
+      const {
+        style, decorators, terminal, onClick, node, onCustomContainerClick,
+      } = props;
+      return (
+        <div className={node.active ? `${styles.treeItem} ${styles.itemSelected}` : styles.treeItem}>
+          {node.children ?
+            <span
+              className={styles.treeToggleContainer}
+              onClick={props.onClick}
+            >
+              <decorators.Toggle style={style.toggle} />
+            </span>
+            :
+            <span />
+          }
+          <span
+            className={styles.treeHeaderContainer}
+            onClick={props.onCustomContainerClick}
+          >
+            <decorators.Header
+              node={node}
+              style={style.header}
+            />
+          </span>
+        </div >
+      );
+    };
+```
+
+And the initialization is:
+```javascript
+ <Treebeard
+    data={this.state.data}
+    style={treeStyles}
+    onToggle={this.onToggle}
+    onCustomContainerClick={this.onNodeSelect}
+/>
 ```
 
 ### [Example](http://alexcurtis.github.io/react-treebeard/)
